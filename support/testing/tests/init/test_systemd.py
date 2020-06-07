@@ -86,6 +86,20 @@ class TestInitSystemSystemdRoIfupdown(InitSystemSystemdBase):
         self.check_network("eth0")
 
 
+class TestInitSystemSystemdRoIfupdownDbusbroker(TestInitSystemSystemdRoIfupdown):
+    config = TestInitSystemSystemdRoIfupdown.config + \
+        """
+        BR2_PACKAGE_DBUS_BROKER=y
+        """
+
+
+class TestInitSystemSystemdRoIfupdownDbusbrokerDbus(TestInitSystemSystemdRoIfupdownDbusbroker):
+    config = TestInitSystemSystemdRoIfupdownDbusbroker.config + \
+        """
+        BR2_PACKAGE_DBUS=y
+        """
+
+
 class TestInitSystemSystemdRwIfupdown(InitSystemSystemdBase):
     config = InitSystemSystemdBase.config + \
         """
@@ -99,6 +113,20 @@ class TestInitSystemSystemdRwIfupdown(InitSystemSystemdBase):
         self.start_emulator("ext2", "zImage", "vexpress-v2p-ca9")
         self.check_init()
         self.check_network("eth0")
+
+
+class TestInitSystemSystemdRwIfupdownDbusbroker(TestInitSystemSystemdRwIfupdown):
+    config = TestInitSystemSystemdRwIfupdown.config + \
+        """
+        BR2_PACKAGE_DBUS_BROKER=y
+        """
+
+
+class TestInitSystemSystemdRwIfupdownDbusbrokerDbus(TestInitSystemSystemdRwIfupdownDbusbroker):
+    config = TestInitSystemSystemdRwIfupdownDbusbroker.config + \
+        """
+        BR2_PACKAGE_DBUS=y
+        """
 
 
 class TestInitSystemSystemdRoFull(InitSystemSystemdBase):
